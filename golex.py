@@ -23,6 +23,26 @@ tokens = (
     'SWITCH',
     'BREAK',
     'CASE',
+
+     #Guido
+    'SLASH',
+    'INIT_COMMENT',
+    'END_COMMENT',
+    'PLUS',
+    'MINUS',
+    'DOUBLE_SLASH',
+    'PERCENT',
+    'OP_AND',
+    'OP_NEGATIVE',
+    'NOT_EQUAL',
+    'LESS_THAN',
+    'GREATER_THAN',
+    'LESS_EQUAL',
+    'GREATER_EQUAL',
+    'L_PARENTHESIS',
+    'R_PARENTHESIS',
+    'L_BRACKET',
+    'R_BRACKET',
 )
 
 # Regular expression rules for simple tokens
