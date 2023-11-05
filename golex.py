@@ -48,6 +48,26 @@ t_SWITCH = r'switch'
 t_BREAK = r'break'
 t_CASE = r'case'
 
+#Guido Flores
+t_SLASH = r'/'
+t_INIT_COMMENT = r'/[*]'
+t_END_COMMENT = r'[*]/'
+t_PLUS = r'\+'
+t_MINUS = r'-'
+t_DOUBLE_SLASH = r'//'
+t_PERCENT = r'%'
+t_OP_AND = r'&&'
+t_OP_NEGATIVE = r'!'
+t_NOT_EQUAL = r'!='
+t_LESS_THAN = r'<'
+t_GREATER_THAN = r'>'
+t_LESS_EQUAL = r'<='
+t_GREATER_EQUAL = r'>='
+t_L_PARENTHESIS = r'\('
+t_R_PARENTHESIS = r'\)'
+t_L_BRACKET = r'{'
+t_R_BRACKET = r'}'
+
 # Define a rule so we can track line numbers
 def t_newline(t):
     r'\n+'
@@ -63,13 +83,37 @@ def t_error(t):
 
 # Build the lexer
 lexer = lex.lex()
+#Guido
+lexer2 = lex.lex()
 
 # Input tests
 data = ''' 
  const a = 32
 '''
+#Guido Flores
+data2 = '''
+    //comentario
+    /*Texto*/
+    /Texto2
+
+    for i in range(0,12):
+        if (i <= 5){
+            i = i + 7
+            }
+        if (i >= 6){
+            i = i - 2
+            }
+        if (i != 0){
+            i = i % 2
+        }
+        if(i < 1 && i > 0){
+            i = 0
+        }         
+''' 
 
 lexer.input(data)
+#Guido Flores
+lexer2.input(data2)
 
 #Tokenize
 while True:
@@ -77,4 +121,12 @@ while True:
     if not tok:
         break
     print(tok)
+
+#Guido
+while True:
+    tok2 = lexer2.token()
+    if not tok2:
+        break
+    print(tok2)    
+
 
