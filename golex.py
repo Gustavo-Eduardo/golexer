@@ -30,6 +30,7 @@ tokens = (
     'END_COMMENT',
     'PLUS',
     'MINUS',
+    'TIMES',
     'DOUBLE_SLASH',
     'PERCENT',
     'OP_AND',
@@ -74,6 +75,7 @@ t_INIT_COMMENT = r'/[*]'
 t_END_COMMENT = r'[*]/'
 t_PLUS = r'\+'
 t_MINUS = r'-'
+t_TIMES = r'\*'
 t_DOUBLE_SLASH = r'//'
 t_PERCENT = r'%'
 t_OP_AND = r'&&'
@@ -87,6 +89,7 @@ t_L_PARENTHESIS = r'\('
 t_R_PARENTHESIS = r'\)'
 t_L_BRACKET = r'{'
 t_R_BRACKET = r'}'
+
 
 # Define a rule so we can track line numbers
 def t_newline(t):
@@ -121,7 +124,7 @@ data2 = '''
             i = i + 7
             }
         if (i >= 6){
-            i = i - 2
+            i = i - 2 * 4
             }
         if (i != 0){
             i = i % 2
