@@ -44,6 +44,26 @@ tokens = (
     'R_PARENTHESIS',
     'L_BRACKET',
     'R_BRACKET',
+
+    # Gabriel
+    'UINT8',
+    'UINT16',
+    'UINT32',
+    'UINT64',
+    'INT8',
+    'INT16',
+    'INT32',
+    'INT64',
+    'FLOAT32',
+    'FLOAT64',
+    'COMPLEX64',
+    'COMPLEX128',
+    'BOOL',
+    'STRING',
+    'TRUE',
+    'FALSE',
+    'STRUCT',
+    'IDENTIFICADOR' 
 )
 
 # Regular expression rules for simple tokens
@@ -90,6 +110,25 @@ t_R_PARENTHESIS = r'\)'
 t_L_BRACKET = r'{'
 t_R_BRACKET = r'}'
 
+# Gabriel
+t_UINT8 = r'uint8'
+t_UINT16 = r'uint16'
+t_UINT32 = r'uint32'
+t_UINT64 = r'uint64'
+t_INT8 = r'int8'
+t_INT16 = r'int16'
+t_INT32 = r'int32'
+t_INT64 = r'int64'
+t_FLOAT32 = r'float32'
+t_FLOAT64 = r'float64'
+t_COMPLEX64 = r'complex64'
+t_COMPLEX128 = r'complex128'
+t_BOOL = r'bool'
+t_STRING = r'string'
+t_TRUE = r'true'
+t_FALSE = r'false'
+t_STRUCT = r'struct'
+t_IDENTIFICADOR = r'[a-zA-Z_][a-zA-Z_0-9]*'
 
 # Define a rule so we can track line numbers
 def t_newline(t):
@@ -108,6 +147,8 @@ def t_error(t):
 lexer = lex.lex()
 #Guido
 lexer2 = lex.lex()
+# Gabriel
+lexer3 = lex.lex()
 
 # Input tests
 data = ''' 
@@ -134,9 +175,37 @@ data2 = '''
         }         
 ''' 
 
+# Gabriel Castro
+data3 = '''
+    uint8 a = 32 
+    uint16 b = 32
+    uint32 c = 32
+    uint64 d = 32
+    int8 a = 32
+    int16 b = 32
+    int32 c = 32
+    int64 d = 32
+    float32 a = 32
+    float64 b = 32
+    complex64 a = 32
+    complex128 b = 32
+    bool a = true
+    bool b = false
+    string a = "texto"
+    string b = "texto2"
+    struct s1 {
+    uint8 a = 32
+    uint16 b = 32
+    uint32 c = 32
+    uint64 d = 32
+    }
+    '''
+
 lexer.input(data)
 #Guido Flores
 lexer2.input(data2)
+#Gabriel Castro
+lexer3.input(data3)
 
 #Tokenize
 while True:
@@ -152,4 +221,10 @@ while True:
         break
     print(tok2)    
 
+#Gabriel
+while True:
+    tok3 = lexer3.token()
+    if not tok3:
+        break
+    print(tok3)
 
