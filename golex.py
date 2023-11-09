@@ -44,6 +44,8 @@ tokens = (
     'R_PARENTHESIS',
     'L_BRACKET',
     'R_BRACKET',
+    'NUMBER',
+    'QUOTE',
 
     # Gabriel
     'UINT8',
@@ -109,6 +111,8 @@ t_L_PARENTHESIS = r'\('
 t_R_PARENTHESIS = r'\)'
 t_L_BRACKET = r'{'
 t_R_BRACKET = r'}'
+t_NUMBER = r'[0-9]+'
+t_QUOTE = r'"'
 
 # Gabriel
 t_UINT8 = r'uint8'
