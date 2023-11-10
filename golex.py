@@ -1,5 +1,15 @@
 import ply.lex as lex
 
+
+reservadas = {
+  'if' : 'IF',
+  'println' : 'PRINTLN',
+  'printf' : 'PRINTF',
+  'else' : 'ELSE',
+  'for' : 'FOR',
+  'True' : 'TRUE',
+  'False' : 'FALSE',
+}
 # List of token names.
 
 tokens = (
@@ -46,6 +56,10 @@ tokens = (
     'R_BRACKET',
     'NUMBER',
     'QUOTE',
+    'PRINTLN',
+    'PRINTF',
+    'FLOAT',
+    'STR',
 
     # Gabriel
     'UINT8',
@@ -66,7 +80,7 @@ tokens = (
     'FALSE',
     'STRUCT',
     'IDENTIFICADOR' 
-)
+)+tuple(reservadas.values())
 
 # Regular expression rules for simple tokens
 
@@ -113,6 +127,9 @@ t_L_BRACKET = r'{'
 t_R_BRACKET = r'}'
 t_NUMBER = r'[0-9]+'
 t_QUOTE = r'"'
+t_PRINTLN = r'println'
+t_PRINTF = r'printf'
+t_FLOAT = r'[0-9]+[.][0.9]+'
 
 # Gabriel
 t_UINT8 = r'uint8'
@@ -132,7 +149,11 @@ t_STRING = r'string'
 t_TRUE = r'true'
 t_FALSE = r'false'
 t_STRUCT = r'struct'
-t_IDENTIFICADOR = r'[a-zA-Z_][a-zA-Z_0-9]*'
+
+def t_IDENTIFICADOR(t):
+  r'[a-zA-Z_]\w*'
+  t.type = reservadas.get(t.value, 'IDENTIFICADOR')
+  return t
 
 # Define a rule so we can track line numbers
 def t_newline(t):
