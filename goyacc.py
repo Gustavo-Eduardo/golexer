@@ -1,5 +1,5 @@
 import ply.yacc as yacc
-from lexico import tokens
+from golex import tokens
 
 def p_program(p):
   '''program : statement 
@@ -11,6 +11,8 @@ def p_statement(p):
   '''statement : print
                 | assignment
   '''
+
+#Guido Flores
 
 def p_print(p):
   '''print : printer L_PARENTHESIS valor R_PARENTHESIS 
@@ -40,7 +42,6 @@ def p_printer(p):
 def p_assigment(p):
   '''assignment : IDENTIFICADOR ASSIGN valor
   '''
-  
 
 def p_error(p):
   print("Error sintáctico")
