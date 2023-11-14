@@ -7,8 +7,31 @@ reservadas = {
   'printf' : 'PRINTF',
   'else' : 'ELSE',
   'for' : 'FOR',
-  'True' : 'TRUE',
-  'False' : 'FALSE',
+  'true' : 'TRUE',
+  'false' : 'FALSE',
+  'const':'CONSTANT',
+  'var':'VARIABLE',
+  'func':'FUNCTION',
+  'return':'RETURN',
+  'continue':'CONTINUE',
+  'switch':'SWITCH',
+  'break':'BREAK',
+  'case':'CASE',
+  'uint8':'UINT8',
+  'uint16':'UINT16',
+  'uint32':'UINT32',
+  'uint64':'UINT64',
+  'int8':'INT8',
+  'int16':'INT16',
+  'int32':'INT32',
+  'int64':'INT64',
+  'float32':'FLOAT32',
+  'float64':'FLOAT64',
+  'complex64':'COMPLEX64',
+  'complex128':'COMPLEX128',
+  'bool':'BOOL',
+  'string':'STRING',
+  'struct':'STRUCT',
 }
 # List of token names.
 
@@ -22,18 +45,6 @@ tokens = (
     'SEMI_COLON',
     'ASSIGN',
     'SHORT_ASSIGN',
-    'CONSTANT',
-    'VARIABLE',
-    'IF',
-    'ELSE',
-    'FUNCTION',
-    'RETURN',
-    'FOR',
-    'CONTINUE',
-    'SWITCH',
-    'BREAK',
-    'CASE',
-
      #Guido
     'SLASH',
     'INIT_COMMENT',
@@ -56,30 +67,11 @@ tokens = (
     'R_BRACKET',
     'NUMBER',
     'QUOTE',
-    'PRINTLN',
-    'PRINTF',
     'FLOAT',
     'STR',
 
-    # Gabriel
-    'UINT8',
-    'UINT16',
-    'UINT32',
-    'UINT64',
-    'INT8',
-    'INT16',
-    'INT32',
-    'INT64',
-    'FLOAT32',
-    'FLOAT64',
-    'COMPLEX64',
-    'COMPLEX128',
-    'BOOL',
-    'STRING',
-    'TRUE',
-    'FALSE',
-    'STRUCT',
-    'IDENTIFICADOR' 
+    # Gabriel    
+    'IDENTIFICADOR'
 )+tuple(reservadas.values())
 
 # Regular expression rules for simple tokens
@@ -93,18 +85,6 @@ t_COLON = r':'
 t_SEMI_COLON = r';'
 t_ASSIGN = r'='
 t_SHORT_ASSIGN = r':='
-t_CONSTANT = r'const'
-t_VARIABLE = r'var'
-t_IF = r'if'
-t_ELSE = r'else'
-t_FUNCTION = r'func'
-t_RETURN = r'return'
-t_FOR = r'for'
-t_CONTINUE = r'continue'
-t_SWITCH = r'switch'
-t_BREAK = r'break'
-t_CASE = r'case'
-
 #Guido Flores
 t_SLASH = r'/'
 t_INIT_COMMENT = r'/[*]'
@@ -127,28 +107,7 @@ t_L_BRACKET = r'{'
 t_R_BRACKET = r'}'
 t_NUMBER = r'[0-9]+'
 t_QUOTE = r'"'
-t_PRINTLN = r'println'
-t_PRINTF = r'printf'
 t_FLOAT = r'[0-9]+[.][0.9]+'
-
-# Gabriel
-t_UINT8 = r'uint8'
-t_UINT16 = r'uint16'
-t_UINT32 = r'uint32'
-t_UINT64 = r'uint64'
-t_INT8 = r'int8'
-t_INT16 = r'int16'
-t_INT32 = r'int32'
-t_INT64 = r'int64'
-t_FLOAT32 = r'float32'
-t_FLOAT64 = r'float64'
-t_COMPLEX64 = r'complex64'
-t_COMPLEX128 = r'complex128'
-t_BOOL = r'bool'
-t_STRING = r'string'
-t_TRUE = r'true'
-t_FALSE = r'false'
-t_STRUCT = r'struct'
 
 def t_IDENTIFICADOR(t):
   r'[a-zA-Z_]\w*'
