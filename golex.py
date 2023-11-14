@@ -5,6 +5,9 @@ reservadas = {
   'if' : 'IF',
   'println' : 'PRINTLN',
   'printf' : 'PRINTF',
+  'scan' : 'SCAN',
+  'scanln' : 'SCANLN',
+  'scanf' : 'SCANF'
   'else' : 'ELSE',
   'for' : 'FOR',
   'true' : 'TRUE',
@@ -71,7 +74,8 @@ tokens = (
     'STR',
 
     # Gabriel    
-    'IDENTIFICADOR'
+    'IDENTIFICADOR',
+    'AMPERSAND'
 )+tuple(reservadas.values())
 
 # Regular expression rules for simple tokens
@@ -108,6 +112,7 @@ t_R_BRACKET = r'}'
 t_NUMBER = r'[0-9]+'
 t_QUOTE = r'"'
 t_FLOAT = r'[0-9]+[.][0.9]+'
+t_AMPERSAND = r'&'
 
 def t_IDENTIFICADOR(t):
   r'[a-zA-Z_]\w*'

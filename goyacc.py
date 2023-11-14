@@ -14,6 +14,7 @@ def p_statement(p):
   '''statement : print
                 | declaration
                 | function_declaration
+                | input
   '''
 
 #Guido Flores
@@ -90,10 +91,21 @@ def p_short_variable_declaration(p):
   | identifier_list type SHORT_ASSIGN values_list
   '''
 
+def p_struct_declaration(p):
+  '''struct_declaration : STRUCT L_BRACKET R_BRACKET
+                        | STRUCT L_BRACKET field_declaration R_BRACKET
+  '''
+
+def p_field_declaration(p):
+  '''field_declaration : identifier_list type
+                       | identifier_list type str
+  '''
+
 def p_declaration(p):
   '''declaration : constant_declaration
   | variable_declaration
   | short_variable_declaration
+  | struct_declaration
   '''
 
 def p_parameter(p):
@@ -108,6 +120,21 @@ def p_parameter_list(p):
 
 def p_function_declaration(p):
   '''function_declaration : FUNCTION IDENTIFICADOR L_PARENTHESIS parameter_list R_PARENTHESIS L_BRACKET statement_list R_BRACKET
+  '''
+
+def p_input(p):
+  '''input : SCAN L_PARENTHESIS mem_address R_PARENTHESIS
+           | SCANLN L_PARENTHESIS mem_address_list R_PARENTHESIS
+           | SCANF L_PARENTHESIS str COMMA mem_address_list R_PARENTHESIS
+  '''
+
+def p_mem_address(p):
+  '''mem_address : AMPERSAND IDENTIFICADOR
+  '''
+
+def p_mem_address_list(p):
+  '''mem_address_list : mem_address
+                      | mem_adress COMMA mem_adress_list
   '''
 
 def p_error(p):
