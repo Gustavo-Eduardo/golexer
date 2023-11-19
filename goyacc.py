@@ -3,6 +3,7 @@ from golex import tokens
 
 def p_program(p):
   '''program : statement_list
+              | operation
   '''
 
 def p_statement_list(p):
@@ -43,6 +44,33 @@ def p_printer(p):
   '''printer : PRINTLN
               | PRINTF
   '''
+
+def p_operator(p):
+  '''operator : PLUS
+              | MINUS
+              | TIMES
+              | SLASH
+              | PERCENT
+  '''
+
+
+def p_operand(p):
+  '''operand : valor
+  '''
+
+
+def p_operation(p):
+  '''operation : operand operator operand
+                | operand operator operation
+                | operand operator operation_paren
+                | operation_paren operator operation_paren
+                | operation_paren operator operation
+                | operation_paren operator operand
+  '''
+
+
+def p_operation_paren(p):
+  '''operation_paren : L_PARENTHESIS operation R_PARENTHESIS'''
   
 # Gustavo Lopez
 
