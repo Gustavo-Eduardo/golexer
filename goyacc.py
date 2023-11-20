@@ -4,6 +4,7 @@ from golex import tokens
 def p_program(p):
   '''program : statement_list
               | operation
+              | conditional_statement
   '''
 
 def p_statement_list(p):
@@ -71,7 +72,43 @@ def p_operation(p):
 
 def p_operation_paren(p):
   '''operation_paren : L_PARENTHESIS operation R_PARENTHESIS'''
+
+def p_conditional_statement(p):
+  '''conditional_statement : conditional condition
+                            | conditional united_condition
+  '''
+
+def p_conditional(p):
+  '''conditional : IF
+  '''
+
+def p_op_conditional(p):
+  '''op_conditional : NOT_EQUAL
+                    | LESS_THAN
+                    | GREATER_THAN
+                    | LESS_EQUAL
+                    | GREATER_EQUAL
+                    | EQUAL
+  '''
+
+def p_condition(p):
+  '''condition : IDENTIFICADOR op_conditional IDENTIFICADOR
+                | IDENTIFICADOR op_conditional valor
+                | valor op_conditional IDENTIFICADOR
+                | valor op_conditional valor
+  '''
+
+def p_conector(p):
+  '''conector : OP_AND
+              | OP_OR
+  '''
   
+def p_united_condition(p):
+  '''united_condition : condition conector condition 
+                      | united_condition conector condition
+                      | united_condition conector united_condition
+                      | condition conector united_condition
+  '''
 # Gustavo Lopez
 
 def p_identifier_list(p):
