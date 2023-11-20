@@ -58,8 +58,10 @@ tokens = (
     'DOUBLE_SLASH',
     'PERCENT',
     'OP_AND',
+    'OP_OR',
     'OP_NEGATIVE',
     'NOT_EQUAL',
+    'EQUAL',
     'LESS_THAN',
     'GREATER_THAN',
     'LESS_EQUAL',
@@ -99,8 +101,10 @@ t_TIMES = r'\*'
 t_DOUBLE_SLASH = r'//'
 t_PERCENT = r'%'
 t_OP_AND = r'&&'
+t_OP_OR = r'[|][|]'
 t_OP_NEGATIVE = r'!'
 t_NOT_EQUAL = r'!='
+t_EQUAL = r'=='
 t_LESS_THAN = r'<'
 t_GREATER_THAN = r'>'
 t_LESS_EQUAL = r'<='
