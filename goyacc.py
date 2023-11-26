@@ -202,6 +202,7 @@ def p_mem_address_list(p):
                       | mem_adress COMMA mem_adress_list
   '''
 
+#Funcion para detección de errores
 def p_error(p):
   if p:
     print("Syntax error at token", p)
