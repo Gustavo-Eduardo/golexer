@@ -32,7 +32,7 @@ def p_valor(p):
             | bool
             | str
   '''
-def p_string(p):
+def p_str(p):
   '''str : QUOTE IDENTIFICADOR QUOTE
   '''
 
@@ -46,32 +46,68 @@ def p_printer(p):
               | PRINTF
   '''
 
+'''
 def p_operator(p):
-  '''operator : PLUS
+  operator : PLUS
               | MINUS
               | TIMES
               | SLASH
               | PERCENT
   '''
 
-
-def p_operand(p):
-  '''operand : valor
+def p_float_value(p):
+  '''float_value : NUMBER DOT NUMBER
   '''
 
+def p_arithmetic_value(p):
+  '''arithmetic_value : NUMBER
+                      | float_value
+  '''
+
+def p_operation_sum_numbers(p):
+  '''operation_sum_numbers : arithmetic_value PLUS arithmetic_value 
+                            | arithmetic_value PLUS operation_sum_numbers
+  '''
+
+def p_operation_sum_str(p):
+  '''operation_sum_str : str PLUS str 
+                        | str PLUS operation_sum_str
+  '''
+
+def p_operation_minus(p):
+  '''operation_minus : arithmetic_value MINUS arithmetic_value 
+                      | arithmetic_value MINUS operation_minus
+  '''  
+
+def p_operation_multi(p):
+  '''operation_multi : arithmetic_value TIMES arithmetic_value 
+                      | arithmetic_value TIMES operation_multi
+  '''
+
+def p_operation_div(p):
+  '''operation_div : arithmetic_value SLASH arithmetic_value 
+                    | arithmetic_value SLASH operation_div
+  '''  
+
+def p_operation_percent(p):
+  '''operation_percent : NUMBER PERCENT NUMBER 
+                        | NUMBER PERCENT operation_percent 
+  '''  
+
+'''
+def p_operand(p):
+    operand : valor
+  '''
 
 def p_operation(p):
-  '''operation : operand operator operand
-                | operand operator operation
-                | operand operator operation_paren
-                | operation_paren operator operation_paren
-                | operation_paren operator operation
-                | operation_paren operator operand
+  '''operation : operation_sum_numbers 
+                | operation_sum_str
+                | operation_minus
+                | operation_multi
+                | operation_div
+                | operation_percent
   '''
 
-
-def p_operation_paren(p):
-  '''operation_paren : L_PARENTHESIS operation R_PARENTHESIS'''
 
 def p_conditional_statement(p):
   '''conditional_statement : conditional condition
