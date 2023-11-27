@@ -199,7 +199,7 @@ def p_mem_address(p):
 
 def p_mem_address_list(p):
   '''mem_address_list : mem_address
-                      | mem_adress COMMA mem_adress_list
+                      | mem_address COMMA mem_address_list
   '''
 
 #Funcion para detección de errores
