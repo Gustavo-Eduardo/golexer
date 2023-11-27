@@ -46,13 +46,12 @@ def p_printer(p):
               | PRINTF
   '''
 
-'''
-def p_operator(p):
-  operator : PLUS
-              | MINUS
-              | TIMES
-              | SLASH
-              | PERCENT
+
+def p_arithmetic_operator_both(p):
+  '''arithmetic_operator_both : PLUS
+                              | MINUS
+                              | TIMES
+                              | SLASH
   '''
 
 def p_float_value(p):
@@ -99,12 +98,18 @@ def p_operand(p):
     operand : valor
   '''
 
+
+def p_number_operation(p):
+  '''number_operation : operation_sum_numbers
+                      | operation_minus
+                      | operation_multi
+                      | operation_div
+                      | operation_sum_str                      
+                      | arithmetic_value arithmetic_operator_both number_operation
+                      | number_operation arithmetic_operator_both arithmetic_value
+  '''
 def p_operation(p):
-  '''operation : operation_sum_numbers 
-                | operation_sum_str
-                | operation_minus
-                | operation_multi
-                | operation_div
+  '''operation : number_operation 
                 | operation_percent
   '''
 
