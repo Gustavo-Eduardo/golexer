@@ -8,3 +8,6 @@
 ## Una vez lanzado el proyecto puedes
 - Acceder a la api desde `http://127.0.0.1:8000/<endpoint>` para acceder a los endpoints de la api.
 - Acceder a la documentación en SwaggerUI desde `http://127.0.0.1:8000/docs`.
+- Analizar si tu código es válido para GO desde `http://127.0.0.1:8000/analizeCode`
+  Debes enviar un request con la siguiente estructura:
+  `{ "code": "string" }`
