@@ -115,6 +115,7 @@ def p_number_operation(p):
 def p_operation(p):
   '''operation : number_operation 
                 | operation_percent
+                | operation_id
   '''
 
 
