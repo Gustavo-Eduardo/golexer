@@ -262,3 +262,9 @@ while True:
    result = parser.parse(s)
    if result != None:
     print(result)
+
+# Funcion para analizar el codigo desde la API
+def analize(str: code):
+  result = parser.parse(code)
+  if result =! None return result
+  
