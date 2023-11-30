@@ -78,7 +78,7 @@ tokens = (
 
     # Gabriel    
     'IDENTIFICADOR',
-    'AMPERSAND'
+    'AMPERSAND',
 )+tuple(reservadas.values())
 
 # Regular expression rules for simple tokens
@@ -150,23 +150,12 @@ data = '''
 '''
 #Guido Flores
 data2 = '''
-    //comentario
-    /*Texto*/
-    /Texto2
-
-    for i in range(0,12):
-        if (i <= 5){
-            i = i + 7
-            }
-        if (i >= 6){
-            i = i - 2 * 4
-            }
-        if (i != 0){
-            i = i % 2
-        }
-        if(i < 1 && i > 0){
-            i = 0
-        }         
+    func fibonacci(n int) int {
+    if n <= 1 {
+        return n
+    }
+    return fibonacci(n-1) + fibonacci(n-2)
+}
 ''' 
 
 # Gabriel Castro
