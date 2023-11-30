@@ -252,7 +252,7 @@ def p_error(p):
 
 parser = yacc.yacc()
 
-
+'''
 while True:
    try:
        s = input('esp > ')
@@ -262,9 +262,10 @@ while True:
    result = parser.parse(s)
    if result != None:
     print(result)
+'''
 
 # Funcion para analizar el codigo desde la API
-def analize(str: code):
+def analize(code: str):
   result = parser.parse(code)
-  if result =! None return result
-  
+  if result != None:
+    return result

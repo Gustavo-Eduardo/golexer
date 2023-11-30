@@ -201,6 +201,7 @@ lexer2.input(data2)
 #Gabriel Castro
 lexer3.input(data3)
 
+'''
 #Tokenize
 while True:
     tok = lexer.token()
@@ -221,4 +222,4 @@ while True:
     if not tok3:
         break
     print(tok3)
-
+'''

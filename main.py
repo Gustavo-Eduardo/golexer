@@ -12,6 +12,8 @@ async def root():
     return {"message": "Hello World"}
 
 @app.post("/analizeCode")
-async def analizeCode(code: Code):
-    return analize(code)
+async def analizeCode(obj: Code):
+    print('analizando...')
+    print('resultado: ', analize(obj.code))
+    return analize(obj.code)
 
