@@ -1,5 +1,5 @@
-const Result = () => {
-    return <h1 className="result"> Result </h1>
+const Result = ({result}) => {
+    return <h1 className="result"> {result ?? ""} </h1>
 }
 
 export default Result

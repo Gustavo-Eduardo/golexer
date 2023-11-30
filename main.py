@@ -1,7 +1,16 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from goyacc import analize
+from goyacc import parser
 from fastapi.middleware.cors import CORSMiddleware
+
+# Funcion para analizar el codigo desde la API
+def analize(code: str):
+  try:
+    result = parser.parse(code)
+    return result
+  except Exception as e:
+    return str(e)
+        
 
 app = FastAPI()
 
@@ -27,7 +36,9 @@ async def root():
 
 @app.post("/analizeCode")
 async def analizeCode(obj: Code):
+    print(obj.code)
     print('analizando...')
-    print('resultado: ', analize(obj.code))
-    return analize(obj.code)
+    result = analize(obj.code)
+    # print('resultado: ', analize(obj.code))
+    return result
 

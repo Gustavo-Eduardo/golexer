@@ -37,6 +37,7 @@ textarea:focus-visible {
 .analizerContainer {
   width: 100%;
   background-color: #253443;
+  display: flex;
 
 }
 
@@ -74,6 +75,7 @@ textarea:focus-visible {
 
 .lines {
   background-color: #3A4855;
+  font-size: 1rem;
 }
 
 .result {
