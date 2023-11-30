@@ -6,7 +6,6 @@ def p_program(p):
               | operation
               | conditional_statement
   '''
-  p[0] = "No errors found"
 
 def p_statement_list(p):
   '''statement_list : statement 
@@ -94,9 +93,13 @@ def p_operation_percent(p):
                         | NUMBER PERCENT operation_percent 
   '''  
 
+def p_operation_id(p):
+  '''operation_id : IDENTIFICADOR arithmetic_operator_both valor | valor arithmetic_operator_both IDENTIFICADOR
+  '''
+
 '''
 def p_operand(p):
-    operand : valor
+    operand : valor 
   '''
 
 
@@ -116,8 +119,8 @@ def p_operation(p):
 
 
 def p_conditional_statement(p):
-  '''conditional_statement : conditional condition
-                            | conditional united_condition
+  '''conditional_statement : conditional L_PARENTHESIS condition R_PARENTHESIS L_BRACKET statement_list R_BRACKET
+                            | conditional L_PARENTHESIS united_condition R_PARENTHESIS L_BRACKET statement_list R_BRACKET
   '''
 
 def p_conditional(p):
@@ -226,7 +229,7 @@ def p_parameter_list(p):
   '''
 
 def p_function_declaration(p):
-  '''function_declaration : FUNCTION IDENTIFICADOR L_PARENTHESIS parameter_list R_PARENTHESIS L_BRACKET statement_list R_BRACKET
+  '''function_declaration : FUNCTION IDENTIFICADOR L_PARENTHESIS parameter_list R_PARENTHESIS  
   '''
 
 def p_input(p):
@@ -247,16 +250,28 @@ def p_mem_address_list(p):
 #Funcion para detección de errores
 def p_error(p):
   if p:
-    raise Exception("Syntax error at token" + p.value)
-    return "Syntax error at token" + " " + p.value
+    print("Syntax error at token", p)
   else:
-    raise Exception("Syntax error at EOF")
+    print("Syntax error at EOF")
 
 parser = yacc.yacc()
 
+'''
+while True:
+   try:
+       s = input('esp > ')
+   except EOFError:
+       break
+   if not s: continue
+   result = parser.parse(s)
+   if result != None:
+    print(result)
+'''
 
-# # Funcion para analizar el codigo desde la API
-# def analize(code: str):
-#   result = parser.parse(code)
-#   if result != None:
-#     return result
+# Funcion para analizar el codigo desde la API
+def analize(code: str):
+  result = parser.parse(code)
+  if result != None:
+    return result
+
+print(analize('for i in range(0,12):'))
