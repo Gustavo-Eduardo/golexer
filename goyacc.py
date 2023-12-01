@@ -6,6 +6,7 @@ def p_program(p):
               | operation
               | conditional_statement
   '''
+  p[0] = "No errors found"
 
 def p_statement_list(p):
   '''statement_list : statement 
@@ -246,28 +247,16 @@ def p_mem_address_list(p):
 #Funcion para detección de errores
 def p_error(p):
   if p:
-    print("Syntax error at token", p)
+    raise Exception("Syntax error at token" + p.value)
+    return "Syntax error at token" + " " + p.value
   else:
-    print("Syntax error at EOF")
+    raise Exception("Syntax error at EOF")
 
 parser = yacc.yacc()
 
-'''
-while True:
-   try:
-       s = input('esp > ')
-   except EOFError:
-       break
-   if not s: continue
-   result = parser.parse(s)
-   if result != None:
-    print(result)
-'''
 
-# Funcion para analizar el codigo desde la API
-def analize(code: str):
-  result = parser.parse(code)
-  if result != None:
-    return result
-
-print(analize('for i in range(0,12):'))
+# # Funcion para analizar el codigo desde la API
+# def analize(code: str):
+#   result = parser.parse(code)
+#   if result != None:
+#     return result

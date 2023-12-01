@@ -1,11 +1,16 @@
-import Analizer from "./Analizer"
-import Result from "./Result"
+import { useState } from "react";
+import Analizer from "./Analizer";
+import Result from "./Result";
 
 const CodeAnalizer = () => {
-    return <div className="container">
-        <Analizer/>
-        <Result/>
-    </div>
-}
+  const [result, setResult] = useState(null);
 
-export default CodeAnalizer
+  return (
+    <div className="container">
+      <Analizer setResult={setResult}/>
+      <Result result={result}/>
+    </div>
+  );
+};
+
+export default CodeAnalizer;

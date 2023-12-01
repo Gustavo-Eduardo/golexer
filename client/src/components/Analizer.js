@@ -1,12 +1,19 @@
 import { useEffect, useRef, useState } from "react";
+import { analizeCode } from "../api";
 
-const Analizer = () => {
+const Analizer = ({ setResult }) => {
   const [code, setCode] = useState("");
   const linesRef = useRef();
   const textAreaRef = useRef();
   const handleChange = (ev) => {
     setCode(ev.target.value);
   };
+
+  const sendCode = async () => {
+    const result = await analizeCode(code);
+    setResult(result);
+  };
+
   useEffect(() => {
     const lines = textAreaRef?.current?.value?.split("\n");
     if (linesRef.current) {
@@ -17,6 +24,18 @@ const Analizer = () => {
         (_, i) => `<div>${i + 1}</div>`
       ).join("");
     }
+
+    const textareaStyles = window.getComputedStyle(textAreaRef?.current);
+    [
+      "fontFamily",
+      "fontSize",
+      "fontWeight",
+      "letterSpacing",
+      "lineHeight",
+      "padding",
+    ].forEach((property) => {
+        linesRef.current.style[property] = textareaStyles[property];
+    });
   }, [code]);
 
   return (
@@ -30,7 +49,10 @@ const Analizer = () => {
           onChange={handleChange}
         />
       </div>
-      <button className="analize-button"> Analizar </button>
+      <button className="analize-button" onClick={sendCode}>
+        {" "}
+        Analizar{" "}
+      </button>
     </div>
   );
 };
