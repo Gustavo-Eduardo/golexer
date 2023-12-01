@@ -1,5 +1,5 @@
 const Result = () => {
-    return <h1> Result </h1>
+    return <h1 className="result"> Result </h1>
 }
 
 export default Result
