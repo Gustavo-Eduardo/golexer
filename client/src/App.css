@@ -2,12 +2,68 @@
 
 .analizerArea {
   resize: none;
-  width: 60%;
-  height: 40vh;
+  min-width: 60%;
+  min-height: 40vh;
 }
 
 body {
   background-color: #202224;
   color: white;
   font-family: 'JetBrains Mono', monospace;
+}
+
+textarea {
+  background-color: #253443;
+  color: white;
+  width: calc(100% - 1rem);
+  border: none;
+  padding: 1rem 0 1rem 1rem;
+}
+
+textarea:focus-visible {
+  outline: none;
+}
+
+.App {
+  display: grid;
+  place-items: center;
+}
+
+.App > div {
+  max-width: 80vw;
+}
+
+.analizerContainer {
+  width: 100%;
+  background-color: #253443;
+
+}
+
+.container {
+  width: 100%;
+  border: #505050 1.5px solid;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.input {
+  position: relative;
+}
+
+.analize-button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+
+  border: #505050 1.5px solid;
+  border-radius: 10px 0 0 0;
+  font-family: inherit;
+  background-color: #505050;
+  color: white;
+
+  padding: 10px 40px;
+}
+
+.lines {
+  background-color: #3A4855;
 }

@@ -20,7 +20,7 @@ const Analizer = () => {
   }, [code]);
 
   return (
-    <div>
+    <div className="input">
       <div className="analizerContainer">
         <div ref={linesRef} className="lines" />
         <textarea
@@ -30,7 +30,7 @@ const Analizer = () => {
           onChange={handleChange}
         />
       </div>
-      <button className="analize-button"> Analize </button>
+      <button className="analize-button"> Analizar </button>
     </div>
   );
 };
