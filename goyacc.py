@@ -269,3 +269,5 @@ def analize(code: str):
   result = parser.parse(code)
   if result != None:
     return result
+
+print(analize('for i in range(0,12):'))
