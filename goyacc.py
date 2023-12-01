@@ -16,7 +16,17 @@ def p_statement(p):
   '''statement : print
                 | declaration
                 | function_declaration
+                | function_call
+                | operation
+                | conditional_statement
+                | return_statement                
                 | input
+  '''
+
+def p_return_statement(p):
+  '''return_statement : RETURN valor
+                      | RETURN IDENTIFICADOR
+                      | RETURN statement
   '''
 
 #Guido Flores
@@ -94,14 +104,9 @@ def p_operation_percent(p):
   '''  
 
 def p_operation_id(p):
-  '''operation_id : IDENTIFICADOR arithmetic_operator_both valor | valor arithmetic_operator_both IDENTIFICADOR
+  '''operation_id : IDENTIFICADOR arithmetic_operator_both valor
+  | valor arithmetic_operator_both IDENTIFICADOR
   '''
-
-'''
-def p_operand(p):
-    operand : valor 
-  '''
-
 
 def p_number_operation(p):
   '''number_operation : operation_sum_numbers
@@ -172,6 +177,7 @@ def p_type(p):
   | UINT16
   | UINT32
   | UINT64
+  | INT
   | INT8
   | INT16
   | INT32
@@ -229,8 +235,37 @@ def p_parameter_list(p):
   | parameter COMMA parameter_list
   '''
 
+def p_argument(p):
+  '''argument : IDENTIFICADOR
+  | valor
+  | statement
+  '''
+
+  
+def p_argument_list(p):
+  '''argument_list : argument
+  | argument COMMA argument_list
+  '''
+
+def p_function_call(p):
+  '''function_call : IDENTIFICADOR L_PARENTHESIS argument_list R_PARENTHESIS 
+  | IDENTIFICADOR L_PARENTHESIS R_PARENTHESIS 
+  '''
+
+def p_return_type(p):
+  '''return_type : type
+  '''
+
+def p_return_type_list(p):
+  '''return_type_list : return_type
+  | return_type COMMA return_type_list
+  '''
+
 def p_function_declaration(p):
-  '''function_declaration : FUNCTION IDENTIFICADOR L_PARENTHESIS parameter_list R_PARENTHESIS  
+  '''function_declaration : FUNCTION IDENTIFICADOR L_PARENTHESIS parameter_list R_PARENTHESIS L_BRACKET statement_list R_BRACKET
+  | FUNCTION IDENTIFICADOR L_PARENTHESIS R_PARENTHESIS L_BRACKET statement_list R_BRACKET
+  | FUNCTION IDENTIFICADOR L_PARENTHESIS parameter_list R_PARENTHESIS return_type_list L_BRACKET  statement_list R_BRACKET
+  | FUNCTION IDENTIFICADOR L_PARENTHESIS R_PARENTHESIS return_type_list L_BRACKET statement_list R_BRACKET
   '''
 
 def p_input(p):
@@ -251,9 +286,9 @@ def p_mem_address_list(p):
 #Funcion para detección de errores
 def p_error(p):
   if p:
-    print("Syntax error at token", p)
+    raise Exception("Syntax error at token: " + p.value)
   else:
-    print("Syntax error at EOF")
+    raise Exception("Syntax error at EOF")
 
 parser = yacc.yacc()
 
@@ -268,11 +303,3 @@ while True:
    if result != None:
     print(result)
 '''
-
-# Funcion para analizar el codigo desde la API
-def analize(code: str):
-  result = parser.parse(code)
-  if result != None:
-    return result
-
-print(analize('for i in range(0,12):'))
